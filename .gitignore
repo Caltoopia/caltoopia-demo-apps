@@ -1,0 +1,8 @@
+.DS_Store
+*.o
+*.svn
+*~
+*.a
+include
+share
+lib
