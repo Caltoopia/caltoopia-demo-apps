@@ -1,0 +1,22 @@
+/*
+ * mode_ack.cal
+ *
+ *  Created on: September-2012
+ *      Author: Firew Siyoum
+ */
+namespace WLAN:
+
+import System.io.*;
+
+	@ActorProperty(WCET="5")
+	actor ModeAck () int From_CodeAck ==> int To_SendPayload:
+	
+		ProcessModeAck: action From_CodeAck:[data] ==> To_SendPayload:[data]   
+		
+			do
+				dprint("ModeAck: Fired!..."); 				 				
+					    	    	   	
+			end	 	       
+	end
+ 	    
+end

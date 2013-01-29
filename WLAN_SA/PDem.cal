@@ -1,0 +1,28 @@
+/*
+ * pdem.cal
+ *
+ *  Created on: September-2012
+ *      Author: Firew Siyoum
+ */
+namespace WLAN:
+
+import System.io.*;
+
+	@ActorProperty(WCET="920")
+	actor PDem () int From_Switch, int From_Tunnel23 ==> int To_PDec:
+		int dem_result := 0;		
+		PayloadDemodulator: action From_Switch:[data], From_Tunnel23:[data2] ==> To_PDec:[data]   
+
+			do
+				if data > 0 then
+					dem_result := 1;
+				else
+					dem_result := 0;
+				end
+				dprint("PDem: Fired!..."); 				 				
+					    	    	   	
+			end
+	 	       
+	end
+ 	    
+end
