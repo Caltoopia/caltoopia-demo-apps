@@ -1,0 +1,22 @@
+/*
+ * pdec.cal
+ *
+ *  Created on: September-2012
+ *      Author: Firew Siyoum
+ */
+namespace WLAN:
+
+import System.io.*;
+
+	@ActorProperty(WCET="920")
+	actor PDec () int(size=32) From_PDem ==> int(size=32) To_Data, int(size=32) To_Tunnel34:
+	
+		PayloadDecoder: action From_PDem:[data] ==> To_Data:[data], To_Tunnel34:[data]
+			do
+				dprint("PDec: Fired!..."); 		
+					    	    	   	
+			end
+		 	       
+	end
+ 	    
+end

@@ -1,0 +1,22 @@
+/*
+ * data.cal
+ *
+ *  Created on: September-2012
+ *      Author: Firew Siyoum
+ */
+namespace WLAN:
+
+import System.io.dprint;
+
+	@ActorProperty(WCET="5")
+	actor Data () int From_PDec ==>:
+	
+		DataSink: action From_PDec:[data] ==>   
+			do
+				dprint("PDec: Fired!..."); 				 				
+					    	    	   	
+			end
+	 	       
+	end
+ 	    
+end

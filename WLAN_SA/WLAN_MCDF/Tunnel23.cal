@@ -1,0 +1,52 @@
+/*
+ * tunnel_2_to_3.cal
+ *
+ *  Created on: September-2012
+ *      Author: Firew Siyoum
+ */
+namespace WLAN:
+import System.io.*;
+
+	//Source actor
+		@ActorProperty(WCET="5")
+	actor Tunnel23 () int From_HDec, int From_MC ==> int To_PDem:
+		int state := 0;
+
+		ReadFromMode2: action From_HDec:[data], From_MC:[mode] ==> 
+			guard mode = 2   
+			do
+				state := data;		 				
+				dprint("Tunnel23: Read from Mode2!...");	    	    	   	
+			end
+
+		WriteToMode3: action From_MC:[mode] ==> To_PDem:[state]
+			guard mode = 3     	  
+			do		 				
+				dprint("Tunnel23: Written to Mode3!...");		    	    	   	
+			end
+
+		Mode1and4: action From_MC:[mode] ==> 
+			do		 				
+				dprint("Tunnel23: Mode1and4!...");		    	    	   	
+			end
+			
+		CatchAll: action From_MC:[mode] ==> 
+			do
+				dprint("Tunnel23: Just consumed!...");	
+			end
+	
+		schedule fsm s0:
+			s0 (ReadFromMode2) --> s0;
+			s0 (WriteToMode3) --> s0;
+			s0 (CatchAll) --> s0;
+		end
+		
+		priority 	
+			ReadFromMode2 > CatchAll;
+			WriteToMode3 > CatchAll;
+			Mode1and4 > CatchAll;
+		end
+	 	       
+	end
+ 	    
+end 

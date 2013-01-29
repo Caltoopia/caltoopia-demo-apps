@@ -1,0 +1,21 @@
+/*
+ * send_payload.cal
+ *
+ *  Created on: September-2012
+ *      Author: Firew Siyoum
+ */
+namespace WLAN:
+
+import System.io.*;
+
+	@ActorProperty(WCET="5")
+	actor SendPayload () int From_SendHeader,  int From_ModeAck ==> :	
+		ProcessSendPayload: action From_SendHeader:[data], From_ModeAck:[modeData] ==>   
+
+			do
+				dprint("PDec: Fired!..."); 				 				
+					    	    	   	
+			end	 	       
+	end
+ 	    
+end

@@ -1,0 +1,20 @@
+<fsm initialState="mode1">
+<state name="mode1" action="changeMode">
+	<controltoken name="default" value="1"/>
+	<transition state="mode1"/>
+	<transition state="mode2"/>
+</state>
+<state name="mode2" action="changeMode">
+	<controltoken name="default" value="2"/>
+	<transition state="mode3"/>
+</state>
+<state name="mode3" action="changeMode">
+	<controltoken name="default" value="3"/>
+	<transition state="mode3"/>
+	<transition state="mode4"/>
+</state>
+<state name="mode4" action="changeMode">
+	<controltoken name="default" value="4"/>
+	<transition state="mode1"/>
+</state>
+</fsm>
