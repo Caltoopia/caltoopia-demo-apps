@@ -1,0 +1,32 @@
+/*
+ * source.cal
+ *
+ *  Created on: September-2012
+ *      Author: Firew Siyoum
+ */
+
+namespace WLAN:
+
+	@ActorProperty(Source="true", WCET="4000")
+	actor Source () int From_Source ==> int To_Source, int To_Shift:
+		int value := 0;		
+		int mode := 1;
+
+		init: action ==> To_Source:[mode] end
+
+		ForwardToShift: action From_Source:[data] ==> To_Source:[data], To_Shift:[value] 
+			do
+				value := 1;
+			end
+
+		priority
+			init > ForwardToShift;
+		end
+		schedule fsm s1:
+ 			s1 (init) --> s2;
+ 			s2 (ForwardToShift)  --> s2;
+ 		end
+	 	       
+	end
+ 	    
+end 

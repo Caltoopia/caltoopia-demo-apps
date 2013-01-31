@@ -1,0 +1,37 @@
+/*
+ * tunnel_3_to_4.cal
+ *
+ *  Created on: September-2012
+ *      Author: Firew Siyoum
+ */
+
+namespace WLAN:
+
+import System.io.*;
+	//Source actor
+		@ActorProperty(WCET="5")
+	actor Tunnel34 () int From_PDec, int From_MC ==> int To_CRC:
+		int state := 0;
+
+		ReadFromMode3: action From_PDec:[data], From_MC:[mode] ==> 
+			guard mode = 3
+			do
+				state := data;		 				
+				dprint("Tunnel34: Read from Mode3!...");	    	    	   	
+			end
+
+		WriteToMode4: action From_MC:[mode] ==> To_CRC:[state]
+			guard mode = 4     	  
+			do		 				
+				dprint("Tunnel34: Written to Mode4!...");		    	    	   	
+			end
+
+	   Mode1and2: action From_MC:[mode] ==> 
+			guard mode != 3 and mode != 4     	  
+			do		 				
+				dprint("Tunnel34: Mode1and2!...");		    	    	   	
+			end
+ 	       
+	end
+ 	    
+end

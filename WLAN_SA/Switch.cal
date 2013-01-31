@@ -1,0 +1,40 @@
+/*
+ * switch.cal
+ *
+ *  Created on: September-2012
+ *      Author: Firew Siyoum
+ */
+namespace WLAN:
+
+import System.io.*;
+
+	//Source actor
+	@ActorProperty(WCET="5")
+	actor Switch () int From_Shift, int From_MC ==> int To_Sync, int To_HDem, int To_PDem:
+
+		SwitchToMode1: action From_Shift:[data], From_MC:[mode] ==> To_Sync:[data]
+			guard mode = 1     	  
+			do		 				
+				dprint("Switch: Forwarded to Mode1!...");	    	    	   	
+			end
+
+		SwitchToMode2: action From_Shift:[data], From_MC:[mode] ==> To_HDem:[data]
+			guard mode = 2     	  
+			do		 				
+				dprint("Switch: Forwarded to Mode2!...");		    	    	   	
+			end
+
+		SwitchToMode3: action From_Shift:[data], From_MC:[mode] ==> To_PDem:[data]
+			guard mode = 3     	  
+			do		 				
+				dprint("Switch: Forwarded to Mode3!...");		    	    	   	
+			end
+		SwitchToMode4: action From_Shift:[data], From_MC:[mode] ==> 
+			guard mode = 4  
+			do
+				dprint("Switch: Forwarded to Mode4!...");	
+			end
+	 	       
+	end
+ 	    
+end 
