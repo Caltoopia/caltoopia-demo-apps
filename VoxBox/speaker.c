@@ -45,6 +45,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <fcntl.h>
+#include <stdint.h>
 #include <sys/ioctl.h>
 #include <sys/soundcard.h>
 
@@ -55,12 +56,12 @@ static struct {
   int bytesPerSample;
 } speakerState;
  
-static void set_ioctl(int devdsp, int request, int value,const char *errorMsg) {
-  int value_set=value;
+static void set_ioctl(uint32_t devdsp, uint32_t request, uint32_t value,const char *errorMsg) {
+  uint32_t value_set=value;
   int result=ioctl(devdsp,request,&value_set);
 
   if (result==-1) {
-    perror("set_ioctrl");
+    perror("set_ioctl");
     exit(-1);
   }
   else if (value_set!=value) {
